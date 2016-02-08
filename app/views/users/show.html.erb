@@ -1,0 +1,38 @@
+
+
+    
+
+
+
+      <% provide(:title, @user.name) %>
+    <div class="row">
+      <aside class="col-md-4">
+        <section class="user_info">
+          <h1>
+            <%= gravatar_for @user %>
+            <%= @user.name %>
+          </h1>
+        </section>
+      </aside>
+    </div><br>
+<div class="row">
+      <div class="col-md-4">
+          <div class="panel panel-default">
+               <div class="panel panel-body">
+                        <% if (@user.trainer?)%>
+                            <h5>Trainers Classes</h5> 
+                            <% @createdclasses.each do |exclass| %><br><hr>
+                            <%= link_to exclass.title, exclass %>
+                            <%end%>
+                            
+                       <% else%>
+
+                          <h5>Classes Attending</h5>
+                          <% @bookings.each do |exclass| %><br><hr>
+                          <%= link_to exclass.title, exclass %>
+                          <%end%>
+                      <%end%>
+          </div>
+          </div>
+</div>
+      </div>

@@ -1,0 +1,7 @@
+<div id="row">
+<% if current_user.attending?(@exerciseclass) %> 
+  <%= render 'cancel' %>
+<% else %>
+  <%= render 'attend' %>
+<% end %>
+</div>

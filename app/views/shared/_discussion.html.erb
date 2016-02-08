@@ -1,0 +1,9 @@
+<% if @discussion_comments.any? %>
+	<div class="row">
+         <div class="col-md-10">
+      <ul class="comments">
+        <%= render @discussion_comments %>
+      </ul>
+      	</div>
+    </div>
+    <% end %>

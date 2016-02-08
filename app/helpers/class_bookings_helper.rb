@@ -1,0 +1,2 @@
+module ClassBookingsHelper
+end

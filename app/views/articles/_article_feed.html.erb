@@ -1,0 +1,22 @@
+
+<div class="row">
+  <div class="panel panel-default">
+     <div class="panel panel-body">
+              <p><h4>Recent Articles</h4></p>
+              <hr>
+                  
+                    <% @articles.each do |article| %>
+                            
+                        <dl >
+                          <dt><%= link_to article.title, article%></dt>
+                           <dd><%= sanitize(truncate(article.content, length: 100,  escape: false))%></dd>
+                          </dl>
+                         <hr>                
+                                    
+                              
+                                            
+                     <% end %>
+
+</div>
+</div>
+</div>

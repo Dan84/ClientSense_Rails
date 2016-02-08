@@ -1,0 +1,52 @@
+<% if logged_in? %>
+      <div class="row">
+        <aside class="col-md-4">
+          <section class="user_info">
+            <%= render 'shared/user_info' %>
+          </section>         
+        </aside>
+        </div>
+              <div class="row">
+                <div class="col-md-8 ">
+                  <div class="panel panel-default">
+                    <div class="panel panel-body">
+                      <h3><%= "Welcome #{current_user.name}" %></h3>
+                      <div class="col-md-3 ">
+
+                        <% if current_user.trainer? %>
+                      
+                        <%= button_to "New Article", newarticle_path, :method => "get", class: "btn btn-sm btn-primary" %>
+                        <%end %>
+                      </div>
+                      </div>
+                    </div>
+                </div>
+              <div class="col-md-4 ">
+                     <%=render 'articles/article_feed'%>
+                <div class="col-md-4 col-md-push-9">
+                    <%= button_to "Go to Articles", articles_path, :method => "get",class: "btn btn-sm btn-primary" %>
+                </div>
+                    
+              </div>
+         
+        
+          
+      </div>
+
+      
+
+    <% else %>
+      <div class="center jumbotron">
+        <h1>Welcome to Furious Fitness</h1>
+
+        <h2>
+          This is the home page for the The Ultimate Fitness Centre
+          
+        </h2>
+
+        <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+      </div>
+
+      <%= link_to image_tag("rails.png", alt: "Rails logo"),
+                  'http://rubyonrails.org/' %>
+    <% end %>
