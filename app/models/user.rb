@@ -1,11 +1,17 @@
 class User < ActiveRecord::Base
 	attr_accessor :remember_token
 
+	self.inheritance_column = :type
+
+
 	has_many :exercise_classes, dependent: :destroy
 	has_many :class_bookings
 	has_many :attendances, :through => :class_bookings, :source => :exercise_class 
 	has_many :articles, dependent: :destroy
 	has_many :comments, dependent: :destroy
+
+	scope :trainers, -> { where(type: 'Trainer') }
+	scope :clients, -> { where(type: 'Client') }
 
 	validates :name, presence: true, length: {in: 4..30}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -17,6 +23,11 @@ class User < ActiveRecord::Base
 	has_secure_password
 
 	before_save {|user| user.email = email.downcase}
+
+	def to_partial_path
+  		'users/user'
+	end 
+
 
 	#Returns the hash digest of a string.
 	def User.digest(string)
@@ -57,6 +68,8 @@ class User < ActiveRecord::Base
   	def cancel!(exerciseclass)
     	self.class_bookings.find_by(exercise_class_id: exerciseclass.id).destroy
   	end
+
+  	
 
   	
 

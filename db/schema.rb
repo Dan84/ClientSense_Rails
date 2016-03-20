@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207163108) do
+ActiveRecord::Schema.define(version: 20160319233755) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "appointment_at"
+    t.datetime "end_time"
+    t.boolean  "confirmed",      default: false
+    t.integer  "trainer_id"
+    t.integer  "client_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -69,6 +79,11 @@ ActiveRecord::Schema.define(version: 20151207163108) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "clients", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -95,6 +110,11 @@ ActiveRecord::Schema.define(version: 20151207163108) do
   add_index "exercise_classes", ["user_id", "created_at"], name: "index_exercise_classes_on_user_id_and_created_at"
   add_index "exercise_classes", ["user_id"], name: "index_exercise_classes_on_user_id"
 
+  create_table "trainers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -103,6 +123,7 @@ ActiveRecord::Schema.define(version: 20151207163108) do
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "trainer",         default: false
+    t.string   "type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

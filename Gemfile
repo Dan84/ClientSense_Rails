@@ -18,7 +18,9 @@ source 'https://rubygems.org'
     gem 'mini_magick'
     gem 'will_paginate', '~> 3.0.6'
     gem 'bootstrap-will_paginate', '~> 0.0.10'
-
+    gem 'momentjs-rails', '>= 2.9.0'
+    gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+    
     group :development, :test do
       gem 'sqlite3',     '1.3.9'
       gem 'byebug',      '3.4.0'

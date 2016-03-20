@@ -5,48 +5,65 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-user1 = User.create!(name:  "Paul Thomas (trainer)",
+user1 = Trainer.create!(name:  "Paul Thomas (trainer)",
              email: "trainer@example.ie",
              password:              "password",
              password_confirmation: "password",
              trainer: true)
 
-user2 = User.create!(name:  "Daniel Murphy",
+user2 = Client.create!(name:  "Daniel Murphy",
              email: "daniel@example.ie",
              password:              "password",
              password_confirmation: "password")
 
-user3 = User.create!(name:  "Cian French",
+user3 = Client.create!(name:  "Cian French",
              email: "cian@example.ie",
              password:              "password",
              password_confirmation: "password")
 
-user4 = User.create!(name:  "Angela Tobin",
+user4 = Client.create!(name:  "Angela Tobin",
              email: "angela@example.ie",
              password:              "password",
              password_confirmation: "password")
 
-user5 = User.create!(name:  "Johnny Murphy",
+user5 = Client.create!(name:  "Johnny Murphy",
              email: "johnny@example.ie",
              password:              "password",
              password_confirmation: "password")
 
-user6 = User.create!(name:  "Kevin Walsh",
+user6 = Client.create!(name:  "Kevin Walsh",
              email: "kevin@example.ie",
              password:              "password",
              password_confirmation: "password")
 
-user7 = User.create!(name:  "Jodie Frost",
+user7 = Client.create!(name:  "Jodie Frost",
              email: "jodie@example.ie",
              password:              "password",
              password_confirmation: "password")
 
 
-user8 = User.create!(name:  "Pamela Lambert (trainer)",
+user8 = Trainer.create!(name:  "Pamela Lambert (trainer)",
              email: "pamela@example.ie",
              password:              "password",
              password_confirmation: "password",
 			 trainer: true)
+
+user9 = Client.create!(name:  "Shane Lambert",
+             email: "Shane@example.ie",
+             password:              "password",
+             password_confirmation: "password")
+
+user10 = Client.create!(name:  "Richard Lambert",
+             email: "Richard@example.ie",
+             password:              "password",
+             password_confirmation: "password")
+                   
+
+user11 = Client.create!(name:  "Dominic Lambert",
+             email: "Dominic@example.ie",
+             password:              "password",
+             password_confirmation: "password")
+                   
 
 
 ClassStyle.create style: 'Kickboxing'

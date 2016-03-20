@@ -26,6 +26,7 @@ end
       
   def new
   	@user = User.new
+    @user.type = params[:user_type]
   end
 
 
@@ -72,13 +73,27 @@ end
 
 
 
+  def change_type
+    @user = User.find(params[:id])
+    @user
+    if @user.save
+      flash[:success] = "Account updated"
+      redirect_to users_url
+      else
+        flash[:success] = "Account not updated"
+      redirect_to users_url
+    end
+  end
+
+
+
 
 
   private
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation,:type)
     end
 
 
@@ -95,6 +110,17 @@ end
       redirect_to(root_url) unless @user == current_user
     end
 
+    def user_type
+      params[:type].capitalize
+    end
+
+    def sti_type_is_trainer
+      if self.type? == 'Trainer'
+        true
+      else
+        false
+      end
+    end
 
 
     

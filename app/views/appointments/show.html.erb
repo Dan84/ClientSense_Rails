@@ -1,0 +1,22 @@
+<% provide(:title, @appointment.client_id) %>
+ <h1><%=@appointment.client_id%></h1>
+<div class="row">
+    <div class="col-md-9 ">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= @appointment.client.name%></h3>
+            </div>
+                <div class="panel-body">
+                    <p> <%= @appointment.appointment_at.strftime("%B %d, %Y, %H:%M")+' - '%>
+                    <% if @appointment.confirmed?%>
+                    <%=@appointment.end_time.strftime("%I:%M%p")%></p>
+                    <%end%>
+                     <% if @appointment.trainer_id != nil %>
+                     <p><%= @appointment.trainer.name %></p>
+                     <%end%>
+                     <%= button_to "Edit", edit_appointment_path(@appointment), method: :get, class: "btn btn-sm btn-primary " %><br>
+                     <%= button_to "Delete",@appointment,method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-primary " %><br>
+                </div>
+        </div>
+  </div>     

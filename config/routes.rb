@@ -23,9 +23,13 @@ Rails.application.routes.draw do
   #get 'sessions/new'
 
   resources :users
+  resources :trainers, controller: 'users', type: 'Trainer'
+  resources :clients, controller: 'users', type: 'Client'
+
   resources :exercise_classes
   resources :articles 
   resources :comments
+  resources :appointments
   
   resources :class_bookings, only: [:create, :destroy]
   root 'static_pages#home'
@@ -41,7 +45,9 @@ Rails.application.routes.draw do
   get 'newclass'  =>  'exercise_classes#new'
   get 'allclasses'  =>  'exercise_classes#index'
   get 'newarticle'  =>  'articles#new'
+  get 'newappointment' => 'appointments#new'
   get 'articles'  =>  'articles#index'
+  get 'allappointments' => 'appointments#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
