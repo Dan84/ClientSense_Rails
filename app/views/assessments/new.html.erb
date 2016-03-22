@@ -1,0 +1,39 @@
+<h1>Create New Assessment</h1>
+
+<% provide(:title, 'Assessment Entry') %>
+<% provide(:button_text, 'Add ') %> 
+      <div class="row">
+
+            <div class="col-xs-6 col-xs-offset-3">
+              <div class = "panel panel-default">
+                  <div class = "panel-body">
+              
+                      <%= form_for(@assessment) do |f| %>
+					       <%= render 'shared/error_messages', object: f.object %>
+					       <%= f.label :client_id %><br>
+					        <%= f.collection_select(:client_id, Client.all, :id, :name, {}, {class: 'form-control'  }    ) %>
+					        <%=f.hidden_field :client_name %>
+					        <%= f.label :weight %>	         
+  							<%= f.text_field :weight, class: 'form-control' %>
+  					 <div class="row">
+            			<div class="col-xs-6">
+							<%= f.label :bpsystolic, 'Blood Pressure'%>
+							<%= f.text_field :bpsystolic, class: 'form-control' %>
+						</div>
+						<div class="col-xs-6">
+							<%= f.label :bpdiastolic, '`'%>
+							<%= f.text_field :bpdiastolic, class: 'form-control' %>
+						</div>
+					</div>
+							<%= f.label :bodyfat %>
+							<%= f.text_field :bodyfat, class: 'form-control' %>
+							<%= f.label :notes %>
+							<%= f.text_area :notes, class: 'form-control' %>
+							<%=f.hidden_field :trainer_id, :value => current_user.id%>
+							<%= f.submit yield(:button_text), class: "btn btn-success" %>
+						<%end%>
+                  </div>
+            </div>
+          </div>
+          
+      </div>

@@ -1,0 +1,40 @@
+
+
+<h1>Assessments</h1>
+			<div class="row">
+					<div class="col-xs-3 col-xs-push-2">
+				<%= form_tag assessments_path, :method => 'get' do%>
+					<p>					
+						<div class="input-group">
+  					       <%= text_field_tag :search, params[:search],class: 'form-control' %>
+  					        	<span class="input-group-btn">
+  					        		 <%= submit_tag "Search", :client => nil, class: "btn btn-success"%> 
+  					        	</span>
+  					      	</div>
+					</p>
+				<%end%>
+				</div>						
+			
+					<div class="col-xs-2 col-xs-push-5">
+			<%= button_to "New Assessment", new_assessment_path, :method => "get", class: "btn btn-sm btn-primary" %>
+
+					</div>
+				</div>
+						<div class="row">
+					 		<div class="col-xs-8 col-xs-push-2">
+					 			<% @assessments.each do |assessment| %>
+								<div class="panel panel-info">
+									<div class="panel-heading">
+									<h3 class="panel-title"><% if assessment.client %><%= link_to assessment.client.name, assessment%><%end%></h3>
+									</div>
+										<div class="panel-body">
+										<p><%= assessment.created_at.strftime("%B %d, %Y")%></p>
+									<%= button_to "Delete",assessment,method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-primary " %>
+									</div>
+																		  
+						</div>	
+							<% end %>
+
+					 					
+							</div>						
+					 	</div>

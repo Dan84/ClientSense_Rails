@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   
   
+  get 'assessments/new'
+
+  get 'assessments/create'
+
+  get 'assessments/index'
+
   get 'comments/index'
 
   mount Ckeditor::Engine => '/ckeditor'
@@ -30,6 +36,7 @@ Rails.application.routes.draw do
   resources :articles 
   resources :comments
   resources :appointments
+  resources :assessments
   
   resources :class_bookings, only: [:create, :destroy]
   root 'static_pages#home'

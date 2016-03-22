@@ -1,5 +1,5 @@
 class Client < User
-
+	has_many :assessments
 	has_many :appointments
 	has_many :pt_trainers, :through => :appointments
 

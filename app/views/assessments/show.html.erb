@@ -1,0 +1,21 @@
+<% provide(:title, @assessment.client_id) %>
+ <h1><%=@assessment.client.name%></h1>
+<div class="row">
+    <div class="col-xs-9 ">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= @assessment.client.name%></h3>
+            </div>
+                <div class="panel-body">
+                    <p> <%= @assessment.created_at.strftime("%B %d, %Y")%></p>
+                    <p> <%= @assessment.weight%></p>
+                    <p> <%= @assessment.bpsystolic.to_s+ '/' +@assessment.bpdiastolic.to_s%></p>
+                    <p> <%= @assessment.bodyfat%></p>
+                     <p> <%= @assessment.notes%></p>
+                     <p><%= @assessment.trainer.name %></p>
+                     <%= button_to "Delete",@assessment,method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-primary " %><br>
+                </div>
+        </div>
+  </div>  
+  </div>   

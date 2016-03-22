@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  weight: 
+  bpsystolic: 1
+  bpdiastolic: 1
+  bodyfat: 
+  notes: MyText
+  client_id: 
+  trainer_id: 
+
+two:
+  weight: 
+  bpsystolic: 1
+  bpdiastolic: 1
+  bodyfat: 
+  notes: MyText
+  client_id: 
+  trainer_id: 

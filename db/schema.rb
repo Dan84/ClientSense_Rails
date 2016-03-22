@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319233755) do
+ActiveRecord::Schema.define(version: 20160321221618) do
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "appointment_at"
@@ -34,6 +34,22 @@ ActiveRecord::Schema.define(version: 20160319233755) do
 
   add_index "articles", ["user_id", "created_at"], name: "index_articles_on_user_id_and_created_at"
   add_index "articles", ["user_id"], name: "index_articles_on_user_id"
+
+  create_table "assessments", force: :cascade do |t|
+    t.decimal  "weight"
+    t.integer  "bpsystolic"
+    t.integer  "bpdiastolic"
+    t.decimal  "bodyfat"
+    t.text     "notes"
+    t.integer  "client_id"
+    t.integer  "trainer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "client_name"
+  end
+
+  add_index "assessments", ["client_id"], name: "index_assessments_on_client_id"
+  add_index "assessments", ["trainer_id"], name: "index_assessments_on_trainer_id"
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
