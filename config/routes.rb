@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
   
+  get 'progress/index'
+
+  get 'progress/show'
+
   get 'assessments/new'
 
   get 'assessments/create'
@@ -37,6 +41,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :appointments
   resources :assessments
+  resources :progress
   
   resources :class_bookings, only: [:create, :destroy]
   root 'static_pages#home'
@@ -55,6 +60,7 @@ Rails.application.routes.draw do
   get 'newappointment' => 'appointments#new'
   get 'articles'  =>  'articles#index'
   get 'allappointments' => 'appointments#index'
+  get 'clientprogress' => 'progress#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -19,6 +19,8 @@
 //= require ckeditor/init
 //= require moment
 //= require bootstrap-datetimepicker
+//= require raphael
+//= require morris
 //= require_tree .
 
 

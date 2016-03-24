@@ -17,6 +17,8 @@ class UsersController < ApplicationController
                 redirect_to login_url
               else
                 @users = User.paginate(page: params[:page])
+                @trainers = User.trainers
+                @clients = User.clients
                 
                   #@users = User.where("trainer" => true) 
                   

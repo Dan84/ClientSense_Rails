@@ -1,4 +1,7 @@
 class AssessmentsController < ApplicationController
+  before_filter :logged_in_user
+  before_action :is_user_trainer, only: [:create, :edit, :uptate,:destroy,:index,:show]
+
   def new
   	@assessment = Assessment.new
   end
@@ -6,7 +9,7 @@ class AssessmentsController < ApplicationController
   def create
   	@client_name = Client.find(params[:assessment][:client_id]).name
   	params[:assessment][:client_name] = @client_name
-  	secure_params = params.require(:assessment).permit(:client_id,:client_name,:weight, :bpsystolic, :bpdiastolic,:bodyfat,:notes, :trainer_id)
+  	secure_params = params.require(:assessment).permit(:client_id,:date,:client_name,:weight, :bpsystolic, :bpdiastolic,:bodyfat,:notes, :trainer_id)
   	@assessment = Assessment.create!(secure_params) 
   	
         if @assessment.save
@@ -34,4 +37,18 @@ class AssessmentsController < ApplicationController
 	    flash[:success] = "assessment deleted"
 	    redirect_to assessments_path
   	end
+
+
+
+
+
+  private
+  
+  
+  def is_user_trainer
+       unless current_user.trainer?
+        redirect_to(root_url)
+        flash[:danger] = "You do not have permission to view this page"
+      end
+  end 
 end

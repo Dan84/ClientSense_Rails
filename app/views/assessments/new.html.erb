@@ -10,6 +10,18 @@
               
                       <%= form_for(@assessment) do |f| %>
 					       <%= render 'shared/error_messages', object: f.object %>
+					       <%= f.label :date %>					         
+  							<div class="input-group date" class="datetimepicker">
+  					        <%= f.datetime_field :date, class: 'form-control datetimepicker'%>
+  					        	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+  					      	</div>
+					          <script type="text/javascript">
+					            $(function(){
+					              $('.datetimepicker').datetimepicker({
+					             	format: 'DD-MM-YYYY' 
+					              });
+					             });
+					          </script>
 					       <%= f.label :client_id %><br>
 					        <%= f.collection_select(:client_id, Client.all, :id, :name, {}, {class: 'form-control'  }    ) %>
 					        <%=f.hidden_field :client_name %>
@@ -30,7 +42,9 @@
 							<%= f.label :notes %>
 							<%= f.text_area :notes, class: 'form-control' %>
 							<%=f.hidden_field :trainer_id, :value => current_user.id%>
+							<div>
 							<%= f.submit yield(:button_text), class: "btn btn-success" %>
+						</div>
 						<%end%>
                   </div>
             </div>

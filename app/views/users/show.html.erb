@@ -11,7 +11,8 @@
           <h1>
             <%= gravatar_for @user %>
             <%= @user.name %>
-            <%= button_to "New Assessment", new_assessment_path, :method => "get", class: "btn btn-sm btn-primary" %>
+            <%= button_to "View Assessments", clientprogress_path, :method => "get", class: "btn btn-sm btn-primary" %>
+
           </h1>
         </section>
       </aside>

@@ -20,6 +20,9 @@ source 'https://rubygems.org'
     gem 'bootstrap-will_paginate', '~> 0.0.10'
     gem 'momentjs-rails', '>= 2.9.0'
     gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+    gem 'dateslices', '0.0.3'
+    gem 'chartkick', '~> 1.2.4'
+    gem 'active_median', '~> 0.1.0'
     
     group :development, :test do
       gem 'sqlite3',     '1.3.9'

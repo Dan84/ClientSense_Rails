@@ -1,0 +1,18 @@
+{class: "form-control selectpicker"}
+
+
+
+
+ if params[:search]
+        client_name=  Assessment.find(params[:search])
+        @assessments = client_name.assessments
+          else
+        @assessments = Assessment.all
+      end
+
+
+
+      <%= select_tag :search, options_from_collection_for_select(Client.all, 
+						:name, :name, params[:name]), {prompt: "Select"}%>
+						 <%= submit_tag %>
+					</p>
