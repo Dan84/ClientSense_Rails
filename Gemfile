@@ -26,7 +26,8 @@ source 'https://rubygems.org'
     gem 'fullcalendar-rails'
     gem "simple_calendar", "~> 2.0"
     gem 'responders' 
-
+    gem 'font-awesome-rails', '~> 4.5'
+    
     group :development, :test do
       gem 'sqlite3',     '1.3.9'
       gem 'byebug',      '3.4.0'

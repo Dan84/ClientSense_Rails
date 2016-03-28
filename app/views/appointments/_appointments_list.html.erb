@@ -1,12 +1,12 @@
 <% object.each do |apptm| %>
 	<div class="panel panel-info">
 		<div class="panel-heading">
-			<h3 class="panel-title"><% if apptm.client %><%= link_to apptm.client.name, apptm%><%end%></h3>
+			<h3 class="panel-title"><% if apptm.client %><%= link_to apptm.client.name, apptm%><%end%>
+			<span><%= link_to "", apptm,method: :delete, data: { confirm: "You sure?" }, class: "glyphicon glyphicon-remove" %></span></h3>
 			</div>
 			<div class="panel-body">
-			<p><%= apptm.created_at.strftime("%B %d, %Y")%></p>
 			<%= apptm.appointment_at.strftime("%B %d, %Y, %H:%M")%>
-			<%= button_to "Delete",apptm,method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-primary " %>
+			
 			</div>
 																		  
 	</div>	

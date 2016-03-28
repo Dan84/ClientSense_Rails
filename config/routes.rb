@@ -44,6 +44,12 @@ Rails.application.routes.draw do
   resources :progress
   
   resources :class_bookings, only: [:create, :destroy]
+
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
   root 'static_pages#home'
 
 

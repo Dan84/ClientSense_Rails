@@ -2,6 +2,7 @@
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
 @import 'simple_calendar';
+@import "font-awesome";
 
 
  /* articles */
@@ -258,28 +259,20 @@
       }
     }
 
+/*Navbar*/
 
-
-    .simple-calendar {
-      .day {}
-
-      .wday-0 {background: #777;}
-      .wday-1 {}
-      .wday-2 {}
-      .wday-3 {}
-      .wday-4 {}
-      .wday-5 {}
-      .wday-6 {}
-
-      .today {}
-      .past {}
-      .future {}
-
-      .start-date {}
-
-      .prev-month {}
-      .next-month { }
-      .current-month {}
-
-      .has-events {}
+   ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;    
+}
+li.dropdown:hover > ul.dropdown-menu {
+    display: block;
     }
+
+/*.affix {
+      top: 0;
+      width: 100%;
+  }
+
+  .affix + .container-fluid {
+      padding-top: 70px;
+  }*/

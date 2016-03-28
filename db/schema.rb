@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324184317) do
+ActiveRecord::Schema.define(version: 20160328143759) do
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "appointment_at"
@@ -126,6 +126,18 @@ ActiveRecord::Schema.define(version: 20160324184317) do
 
   add_index "exercise_classes", ["user_id", "created_at"], name: "index_exercise_classes_on_user_id_and_created_at"
   add_index "exercise_classes", ["user_id"], name: "index_exercise_classes_on_user_id"
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "recipient_id"
+    t.integer  "actor_id"
+    t.datetime "read_at"
+    t.string   "action"
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "url"
+  end
 
   create_table "trainers", force: :cascade do |t|
     t.datetime "created_at", null: false

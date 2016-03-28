@@ -25,6 +25,10 @@ class AppointmentsController < ApplicationController
         else(current_user.type == 'Client')	
         	secure_params = params.require(:appointment).permit(:appointment_at,:duration)
 		@appointment = current_user.appointments.create!(secure_params)
+		Trainer.all.each do |trainer|
+		Notification.create(recipient: trainer, actor: current_user, action: "requested an appointment.", url: allappointments_path)
+		
+		end
 		end 
 
 		respond_to do |format|
@@ -69,8 +73,8 @@ class AppointmentsController < ApplicationController
 
 
 	def index
-		@apps_confirmed = Appointment.confirmed
-    	@apps_unconfirmed = Appointment.unconfirmed
+		@apps_confirmed = Appointment.confirmed.upcoming
+    	@apps_unconfirmed = Appointment.unconfirmed.upcoming
     	respond_to do |format|
     	    format.html
     	    format.json { render json:@apps_confirmed.to_json }

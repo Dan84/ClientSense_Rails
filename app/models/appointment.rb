@@ -6,8 +6,12 @@ class Appointment < ActiveRecord::Base
 	validates :client_id, presence: true
 	validates_date :appointment_at, :on_or_after => :today
 
+
 	scope :unconfirmed, -> { where(confirmed: false) }
-  	scope :confirmed, -> { where(confirmed: true) }
+  scope :confirmed, -> { where(confirmed: true) }
+
+  scope :upcoming, -> { where("appointment_at >= ?", Time.now).order('appointment_at ASC') }
+  scope :past, -> { where("appointment_at < ?", Time.now).order('appointment_at DESC') }
 
   	 def start_time
         self.appointment_at ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship

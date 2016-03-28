@@ -20,3 +20,17 @@
 
 
 					events: window.location.href + '.json'
+
+
+          <%= link_to(
+      content_tag(
+        :i,
+        nil, 
+        class: 'fa fa-trash-o'
+      ), 
+      method: :delete, 
+      data: { 
+        confirm: 'Are you sure?' 
+      } 
+    ) 
+%>
