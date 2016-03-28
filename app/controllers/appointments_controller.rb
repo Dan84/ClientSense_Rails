@@ -1,11 +1,15 @@
 class AppointmentsController < ApplicationController
-
+	respond_to :html, :json
 
 
 
 	def new
 		
 		@appointment = Appointment.new
+		respond_to do |format|
+		      format.html
+		      format.js
+		    end
 	end
 
 
@@ -17,27 +21,21 @@ class AppointmentsController < ApplicationController
 		if(current_user.type == 'Trainer')
 		secure_params = params.require(:appointment).permit(:appointment_at,:end_time, :confirmed, :trainer_id,:client_id)
 		
-		@appointment = Appointment.create!(secure_params) 
-
-        if @appointment.save
-          flash[:success] = "Class created!"
-          redirect_to allappointments_path
-        else
-          
-          render 'new'
-        end  
+		@appointment = Appointment.create!(secure_params)        
         else(current_user.type == 'Client')	
         	secure_params = params.require(:appointment).permit(:appointment_at,:duration)
+		@appointment = current_user.appointments.create!(secure_params)
+		end 
 
-		@appointment = current_user.appointments.create!(secure_params) 
-        if @appointment.save
-          flash[:success] = "Class created, Awaiting confirmation"
-          redirect_to root_path
-        else
-          
-          render 'new'
-        end  
-    end
+		respond_to do |format|
+      		if @appointment.save
+      			format.html {redirect_to allappointments_path}
+        		format.json { head :no_content }
+        		format.js
+      		else
+        		format.json { render json: @appointment.errors.full_messages, status: :unprocessable_entity }
+      		end
+    		end
 	end
 
 	def edit
@@ -73,6 +71,11 @@ class AppointmentsController < ApplicationController
 	def index
 		@apps_confirmed = Appointment.confirmed
     	@apps_unconfirmed = Appointment.unconfirmed
+    	respond_to do |format|
+    	    format.html
+    	    format.json { render json:@apps_confirmed.to_json }
+    	  end
+    	
 	end
 
 	def show

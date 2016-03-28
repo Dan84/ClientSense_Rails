@@ -11,10 +11,10 @@ class AssessmentsController < ApplicationController
   	params[:assessment][:client_name] = @client_name
   	secure_params = params.require(:assessment).permit(:client_id,:date,:client_name,:weight, :bpsystolic, :bpdiastolic,:bodyfat,:notes, :trainer_id)
   	@assessment = Assessment.create!(secure_params) 
-  	
+  	@assessments = Assessment.all
         if @assessment.save
-          flash[:success] = "assessment created!"
-          redirect_to assessments_path
+          #flash[:success] = "assessment created!"
+          #redirect_to assessments_path
         else
           
           render 'new'
@@ -22,7 +22,7 @@ class AssessmentsController < ApplicationController
   end
 
   def index
-  	@assessments = Assessment.search(params[:search]).all
+  	@assessments = Assessment.search(params[:search]).all.order('date DESC')
      
   end
 

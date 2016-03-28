@@ -23,7 +23,10 @@ source 'https://rubygems.org'
     gem 'dateslices', '0.0.3'
     gem 'chartkick', '~> 1.2.4'
     gem 'active_median', '~> 0.1.0'
-    
+    gem 'fullcalendar-rails'
+    gem "simple_calendar", "~> 2.0"
+    gem 'responders' 
+
     group :development, :test do
       gem 'sqlite3',     '1.3.9'
       gem 'byebug',      '3.4.0'

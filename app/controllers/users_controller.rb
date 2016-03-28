@@ -2,12 +2,14 @@ class UsersController < ApplicationController
   before_filter :logged_in_user
   before_action :logged_in_user, only: [:read,:edit, :edit,:update]
   before_action :correct_user,   only: [:edit, :update]
+  respond_to :html, :json
 
 	def show
         logged_in_user
         @user = User.find(params[:id])
         @bookings = @user.attendances
         @createdclasses = @user.exercise_classes
+        respond_with(@user)
        # @articles = @user.articles.paginate(page: params[:page])
       end
 

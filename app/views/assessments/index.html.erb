@@ -6,10 +6,14 @@
 				<%= form_tag assessments_path, :method => 'get' do%>
 					<p>					
 						<div class="input-group">
-  					       <%= text_field_tag :search, params[:search],class: 'form-control',placeholder: 'Search client...'%>
+  					       <%= text_field_tag :search, params[:search],remote: true,class: 'form-control',placeholder: 'Search client...'%>
   					        	<span class="input-group-btn">
   					        		 <%= submit_tag "Search", :client => nil, class: "btn btn-default"%> 
   					        	</span>
+  					        	<span class="input-group-btn">
+  					        		 <%= submit_tag "clear", :search => "reset" , class: "btn btn-default"%>
+  					        	</span>
+  					        	
   					      	</div>
 					</p>
 				<%end%>
@@ -24,26 +28,18 @@
 					 	       <th>Name</th>
 					 	       <th>Date</th>
 					 	       <th>Creator</th>
-					 	       <th><%= button_to "Add New", new_assessment_path, :method => "get", class: "btn btn-sm btn-primary" %></th>
+					 	       <th><%= link_to "Add New", new_assessment_path, remote: true, class: "btn btn-sm btn-primary" %></th>
 					 	     </tr>
 					 	   </thead>
-					 	   <tbody>
-					 	   	<% @assessments.each do |assessment| %>
-					 	     <tr class="info">
-					 	       <td><% if assessment.client %><%= assessment.client.name%><%end%></td>
-					 	       <td><%= assessment.date.strftime("%B %d, %Y")%></td>
-					 	       <td><%= assessment.trainer.name%></td>
-					 	       <td>
-					 	       <%= link_to "View",assessment, class: "btn btn-sm btn-default " %>
-					 	   </td>
-					 	     </tr>
-					 	     <% end %>
+					 	   <tbody class = "assessments-index">
+					 	   	<%= render 'index'%>
 					 	   </tbody>
 					 	 </table>
 
 					 					
 							</div>						
 					 	</div>
+					 	<div id="assessment-modal" class="modal fade"></div>
 
 
 

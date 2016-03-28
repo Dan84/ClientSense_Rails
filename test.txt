@@ -16,3 +16,7 @@
 						:name, :name, params[:name]), {prompt: "Select"}%>
 						 <%= submit_tag %>
 					</p>
+
+
+
+					events: window.location.href + '.json'

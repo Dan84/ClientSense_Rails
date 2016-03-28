@@ -1,0 +1,53 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_for @assessment, remote: true, html: { style: "display:inline;" } do |f| %>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">New Assessment</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="errors"></ul>
+              
+                      
+					       <%= f.label :date %>					         
+  							<div class="input-group date" class="datetimepicker">
+  					        <%= f.datetime_field :date, class: 'form-control datetimepicker'%>
+  					        	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+  					      	</div>
+					          <script type="text/javascript">
+					            $(function(){
+					              $('.datetimepicker').datetimepicker({
+					             	format: 'DD-MM-YYYY' 
+					              });
+					             });
+					          </script>
+					       <%= f.label :client_id %><br>
+					        <%= f.collection_select(:client_id, Client.all, :id, :name, {}, {class: 'form-control'  }    ) %>
+					        <%=f.hidden_field :client_name %>
+					        <%= f.label :weight %>	         
+  							<%= f.text_field :weight, class: 'form-control' %>
+  					 <div class="row">
+            			<div class="col-xs-6">
+							<%= f.label :bpsystolic, 'Blood Pressure'%>
+							<%= f.text_field :bpsystolic, class: 'form-control' %>
+						</div>
+						<div class="col-xs-6">
+							<%= f.label :bpdiastolic, '`'%>
+							<%= f.text_field :bpdiastolic, class: 'form-control' %>
+						</div>
+					</div>
+							<%= f.label :bodyfat %>
+							<%= f.text_field :bodyfat, class: 'form-control' %>
+							<%= f.label :notes %>
+							<%= f.text_area :notes, class: 'form-control' %>
+							<%=f.hidden_field :trainer_id, :value => current_user.id%>
+					
+                     
+      </div>
+      <div class="modal-footer">
+        <%= f.submit class: "btn btn-primary" %>
+        <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -8,4 +8,20 @@ class Appointment < ActiveRecord::Base
 
 	scope :unconfirmed, -> { where(confirmed: false) }
   	scope :confirmed, -> { where(confirmed: true) }
+
+  	 def start_time
+        self.appointment_at ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
+    end
+
+
+    def as_json(options = {})
+    {
+      :id => self.id,
+      :title => self.client.name,
+      :start => self.appointment_at,
+      :end => self.end_time
+      
+      
+     }
+     end
 end

@@ -1,6 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
+@import 'simple_calendar';
+
 
  /* articles */
 
@@ -254,4 +256,30 @@
       .form-control {
         color: $state-danger-text;
       }
+    }
+
+
+
+    .simple-calendar {
+      .day {}
+
+      .wday-0 {background: #777;}
+      .wday-1 {}
+      .wday-2 {}
+      .wday-3 {}
+      .wday-4 {}
+      .wday-5 {}
+      .wday-6 {}
+
+      .today {}
+      .past {}
+      .future {}
+
+      .start-date {}
+
+      .prev-month {}
+      .next-month { }
+      .current-month {}
+
+      .has-events {}
     }

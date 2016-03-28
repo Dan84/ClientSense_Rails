@@ -1,0 +1,10 @@
+<% @assessments.each do |assessment| %>
+  <tr class="info">
+    <td><% if assessment.client %><%= assessment.client.name%><%end%></td>
+    <td><%= assessment.date.strftime("%B %d, %Y")%></td>
+    <td><%= assessment.trainer.name%></td>
+    <td>
+    <%= link_to "View",assessment, class: "btn btn-sm btn-default " %>
+</td>
+  </tr>
+<% end %>
