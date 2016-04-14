@@ -49,4 +49,12 @@ module SessionsHelper
           forget(current_user)
           @current_user = nil
       end
+
+
+      def is_user_trainer
+       unless current_user.trainer?
+        redirect_to(root_url)
+        flash[:danger] = "You do not have permission to view this page"
+      end
+  	  end 
 end

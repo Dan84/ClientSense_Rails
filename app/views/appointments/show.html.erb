@@ -15,8 +15,8 @@
                      <% if @appointment.trainer_id != nil %>
                      <p><%= @appointment.trainer.name %></p>
                      <%end%>
-                     <%= button_to "Edit", edit_appointment_path(@appointment), method: :get, class: "btn btn-sm btn-primary " %><br>
-                     <%= button_to "Delete",@appointment,method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-primary " %><br>
+                     <%= link_to "Edit", edit_appointment_path(@appointment), method: :get, class: "btn btn-sm btn-primary " %>
+                     <%= link_to "Delete",@appointment,method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-danger " %><br>
                 </div>
         </div>
   </div>  

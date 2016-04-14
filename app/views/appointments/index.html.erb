@@ -1,20 +1,32 @@
 <h1>One to One Appointments</h1>
-	<div class="row">
-		<div class="col-xs-push-8">
-			<%= link_to 'Add New', newappointment_path,  remote: true, class: "btn btn-primary"   %>
-		</div>
-	</div>
+			<div class="row">
+                <div class="col-xs-9 ">
+                  <div class="panel panel-default box-shadow--6dp">
+                    <div class="panel panel-body">
+                      
+                      <p>Browse the calendar for an available time and your appointment will 
+                      	be confirmed by one of our trainers</p>
+                      	<%= link_to 'Add New', newappointment_path,  remote: true, class: "btn btn-primary"   %>			
+					</div>
+					</div>
+				</div>
+			</div>
 	<div class="row">
 		<div class="col-xs-9">			
 			<div id="calendar-index">
 				<%= render 'calendar' %>
 			</div>
 		</div>
+	<% if current_user.trainer? %>
 	<div class="col-xs-3">
 		<h3>Unconfirmed</h3>
-		<%= render 'appointments_list', object: @apps_unconfirmed %>														 
+		<% if @apps_unconfirmed.any? %>
+			<%= render 'appointments_list', object: @apps_unconfirmed %>#
+		<%else%>
+			<%= "No Unconfirmed Appointments" %>
+		<%end%>														 
 	</div>
-						
+	<% end %>					
 			
 	</div>
 			

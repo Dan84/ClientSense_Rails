@@ -1,9 +1,12 @@
 <li>
-  <%= gravatar_for user, size: 50 %>
-  <%= link_to user.name, user  %> <%="#{user.type}"%>
+  <!-- gravatar_for user, size: 50  -->
+  <%= link_to user.name, user  %> <%="#{user.type}"%> <p>
   <% if current_user.trainer? && !current_user?(user) %>
-    | <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+   <%= link_to "Delete User", user, method: :delete,
+                                  data: { confirm: "You sure?" },
+                                  class: "btn btn-danger btn-xs"%>   
     
   <% end %>
+  |<%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
+                    "data-sid" => current_user.id, "data-rip" => user.id %> </p>
 </li>

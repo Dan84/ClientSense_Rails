@@ -5,6 +5,24 @@
 @import "font-awesome";
 
 
+@font-face {
+  font-family: 'neuropol';
+  src: font-url('neuropol.ttf') format("truetype");
+}
+
+
+#calendar-index{
+  background: #fff;
+
+}
+.fc-header-title{
+    background-color:blue;
+}
+
+
+h1 { color: #7c795d; font-family: "neuropol", serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0; }
+//h3 { color: #7c795d; font-family: 'Source Sans Pro', sans-serif; font-size: 28px; font-weight: 400; line-height: 32px; margin: 0 0 24px; }
+p { }
  /* articles */
 
     .articles {
@@ -24,6 +42,10 @@
         margin-left: 60px;
         }
 
+}
+
+ul.comments{
+  list-style-type: none;
 }
 
 
@@ -80,6 +102,19 @@
 
     body {
       padding-top: 60px;
+      background: #353535;
+      background-image: url("surround.png");
+
+    }
+
+    .box-shadow--6dp {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2)
+    }
+    .container#main{
+      background: #fff;
+      border-radius: .5%;
+      padding-top: 5px;
+
     }
 
     section {
@@ -114,7 +149,8 @@
       font-size: 3em;
       letter-spacing: -2px;
       margin-bottom: 30px;
-      text-align: center;
+      padding: 5px;
+      //text-align: center;
     }
 
     h2 {
@@ -129,6 +165,10 @@
     p {
       font-size: 1.1em;
       line-height: 1.7em;
+      color: #4c4a37; 
+      font-family: 'Source Sans Pro', sans-serif; 
+      
+      margin: 0 0 24px; 
     }
 
     /* header */
@@ -141,7 +181,8 @@
       text-transform: uppercase;
       letter-spacing: -1px;
       padding-top: 9px;
-      font-weight: bold;
+      //font-weight: bold;
+      font-family: 'neuropol';
     }
 
     #logo:hover {
@@ -157,6 +198,10 @@
       padding-top: 5px;
       border-top: 1px solid #eaeaea;
       color: #777;
+      background: #000;
+    }
+    footer body {
+      background: #000;
     }
 
     footer a {
@@ -275,4 +320,186 @@ li.dropdown:hover > ul.dropdown-menu {
 
   .affix + .container-fluid {
       padding-top: 70px;
+
+
   }*/
+
+
+
+  /**
+   * Chat styling
+   * CREDITS: http://css-tricks.com/replicating-google-hangouts-chat/
+   *
+   */
+
+  .chatbox {
+      position: fixed;
+      position: expression("absolute");
+      width: 280px;
+      display: none;
+  }
+
+  .chatboxhead {
+      background: #4547cc;
+      color: white;
+      padding: 0.5rem;
+      overflow: hidden;
+
+      border-right: 1px solid rgba(85, 85, 85, 0.87);
+      border-left: 1px solid rgba(85, 85, 85, 0.87);
+  }
+
+  .chatboxhead h1 {
+      display: inline;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: "Verdana", Geneva, sans-serif;
+      color: #fff;
+  }
+
+  .chatboxblink {
+      background-color: #176689;
+      border-right: 1px solid #176689;
+      border-left: 1px solid #176689;
+  }
+
+  .chatboxcontent {
+      font-family: arial, sans-serif;
+      height: 280px;
+      width: 280px;
+      overflow-y: auto;
+      padding: 7px;
+      border-left: 1px solid #cccccc;
+      border-right: 1px solid #cccccc;
+      border-bottom: 1px solid #eeeeee;
+      background: #a0a0a0;
+      line-height: 1.3em;
+      list-style: none;
+  }
+
+  .chatboxcontent li {
+      padding: 0.5rem;
+      overflow: hidden;
+      display: flex;
+  }
+
+  .chatboxcontent .avatar {
+      width: 40px;
+      position: relative;
+  }
+
+  .chatboxcontent .avatar img {
+      display: block;
+      width: 100%;
+  }
+
+  .other .avatar:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border: 5px solid white;
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+  }
+
+  .self {
+      justify-content: flex-end;
+      align-items: flex-end;
+  }
+
+  .self .chatboxmessagecontent {
+      order: 1;
+      border-bottom-right-radius: 0;
+  }
+
+  .self .avatar {
+      order: 2;
+  }
+
+  .self .avatar:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border: 5px solid white;
+      border-right-color: transparent;
+      border-top-color: transparent;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .chatboxmessagecontent {
+      background: white;
+      padding: 10px;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .chatboxmessagecontent p {
+      font-size: 12px;
+      margin: 0 0 0.2rem 0;
+      -ms-word-break: break-all;
+
+      /* Non standard for webkit */
+      word-break: break-word;
+
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      hyphens: auto;
+  }
+
+  .chatboxmessagecontent time {
+      font-size: 9px;
+      color: #ccc;
+  }
+
+  .chatboxinput {
+      padding: 5px;
+      background-color: #ffffff;
+      border-left: 1px solid #cccccc;
+      border-right: 1px solid #cccccc;
+      border-bottom: 1px solid #cccccc;
+  }
+
+  .chatboxtextarea {
+      width: 262px;
+      height: 44px;
+      padding: 3px 0pt 3px 3px;
+      border: 1px solid #eeeeee;
+      margin: 1px;
+      overflow: hidden;
+      resize: none !important;
+  }
+
+  .chatboxtextareaselected {
+      border: 2px solid #878787;
+      margin: 0;
+  }
+
+  .chatboxmessage {
+      margin-left: 1em;
+  }
+
+  .chatboxinfo {
+      margin-left: -1em;
+      color: #666666;
+
+  }
+
+  .chatboxoptions {
+      float: right;
+  }
+
+  .chatboxoptions a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+  }
+
+  .chatboxtitle {
+      float: left;
+  }

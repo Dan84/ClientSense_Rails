@@ -1,33 +1,20 @@
 <% provide(:title, @article.title) %>
     <div class="row">
-         <div class="col-md-10 col-md-push-1">
-            
-                    
-                      <h1> <%= @article.title%> </h1>
-                        
-                       <div class="panel panel-default">
-                        <div class="panel panel-body">
-                        <%= simple_format(@article.content) %>
-                       </div>
-                       <div class="panel-footer"><%= @article.user.name %>
-                       </div>
-                        </div>
-                
-                    
-                    <%if @article.commentable? %>
-                    	<%= render 'shared/comment_form' %>
-
-                    	 
-                    <h3>Comments</h3>
-                      <%= render 'shared/discussion' %>
-    
-                    <%end%>
- 
-        	
-       
-
-
-       </div>
+         <div class="col-md-10 col-md-push-1">                   
+            <h1> <%= @article.title%> </h1>
+              <div class="panel panel-default box-shadow--6dp">
+                <div class="panel panel-body">
+                  <%= simple_format(@article.content) %>
+                </div>
+                <div class="panel-footer"><%= @article.user.name %>
+                </div>
+              </div>                   
+                <%if @article.commentable? %>
+                    <%= render 'shared/comment_form' %> <hr>                    	 
+                  <h3>Comments</h3>
+                    <%= render 'shared/discussion' %>    
+                <%end%>
+          </div>
     </div>
 
 

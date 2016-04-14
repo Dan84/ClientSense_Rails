@@ -5,21 +5,22 @@
 
 
       <% provide(:title, @user.name) %>
-    <div class="row">
-      <aside class="col-md-4">
-        <section class="user_info">
+
+       <section class="user_info">
           <h1>
             <%= gravatar_for @user %>
             <%= @user.name %>
-            <%= button_to "View Assessments", clientprogress_path, :method => "get", class: "btn btn-sm btn-primary" %>
-
+           
           </h1>
         </section>
-      </aside>
-    </div><br>
-<div class="row">
-      <div class="col-md-4">
-          <div class="panel panel-default">
+      <div class="row">
+    <div class="col-xs-8">
+      
+      <%=render 'profiles/show'%>
+    </div>
+  
+      <div class="col-xs-4">
+          <div class="panel panel-default box-shadow--6dp">
                <div class="panel panel-body">
                         <% if (@user.trainer?)%>
                             <h5>Trainers Classes</h5> 
@@ -37,4 +38,11 @@
           </div>
           </div>
 </div>
+ <%if !current_user.trainer?%>
+            <%= link_to "View Progress", clientprogress_path, :method => "get", class: "btn btn-sm btn-primary" %>
+            
+            <%end%>
+
       </div>
+
+      <div id="profile-modal" class="modal fade"></div>

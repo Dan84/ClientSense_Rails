@@ -1,17 +1,28 @@
 class ArticlesController < ApplicationController
 	before_filter :logged_in_user
 	before_action :is_user_trainer, only: [:create, :edit, :uptate,:destroy]
+	respond_to :html, :json
 
 	def show
 		@article = Article.find(params[:id])
 		@comment  = current_user.comments.build
 
 		@discussion_comments = @article.discussion
+		respond_to do |format|
+        format.html {}
+        format.json {render json: @article}
+        
+        end
 
 	end
 
 	def index
 		@articles = Article.all
+		respond_to do |format|
+        format.html {@articles}
+        format.json {render json: @articles}
+        
+        end
 	end
 
 	def create

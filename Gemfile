@@ -27,6 +27,10 @@ source 'https://rubygems.org'
     gem "simple_calendar", "~> 2.0"
     gem 'responders' 
     gem 'font-awesome-rails', '~> 4.5'
+    gem 'private_pub'
+    gem 'thin'
+    gem 'rack-cors', :require => 'rack/cors'
+    gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
     
     group :development, :test do
       gem 'sqlite3',     '1.3.9'

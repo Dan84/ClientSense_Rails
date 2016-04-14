@@ -1,0 +1,46 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_for @profile do |f| %>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Profile</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="errors"></ul>
+              	<%= f.label :gender %>	
+                <%= f.select :gender, [["Male"], ["Female"]], {}, class: 'form-control'  %>
+					      <%= f.label :dob, 'Date of Birth' %>					         
+  							<div class="input-group date" class="datetimepicker">
+  					        <%= f.date_field :dob, class: 'form-control datepicker'%>
+  					        	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+  					      	</div>
+					          <script type="text/javascript">
+					            $(function(){
+					              $('.datepicker').datepicker({
+					             	format: 'DD-MM-YYYY' 
+					              });
+					             });
+					          </script>
+					       <%= f.label :phone %><br>					                 
+  							<%= f.text_field :phone, class: 'form-control' %> 					
+							<%= f.label :occupation%>
+							<%= f.text_field :occupation, class: 'form-control' %>						
+							<%= f.label :goal%>
+							<%= f.text_field :goal, class: 'form-control' %>					
+							<%= f.label :targetweight %>
+							<%= f.text_field :targetweight, class: 'form-control' %>
+							<%= f.label :bio %>
+							<%= f.text_area :bio, class: 'form-control' %>							
+					
+                     
+      </div>
+      <div class="modal-footer">
+        <%= f.submit class: "btn btn-primary" %>
+        <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+

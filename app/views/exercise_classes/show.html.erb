@@ -20,7 +20,7 @@
     <div class="col-md-3 ">
         <% if current_user.trainer? %>
           <div>
-                    <%= button_to "Edit", edit_exercise_class_path(@exerciseclass), method: :get, class: "btn btn-sm btn-primary " %><br>
+                    <%= button_to "Edit", edit_exercise_class_path(@exerciseclass), remote: true, method: :get, class: "btn btn-sm btn-primary " %><br>
           </div>
           <div>
                     <%= button_to "Delete", @exerciseclass, method: :delete, data: { confirm: "You sure?" } ,class: "btn btn-sm btn-primary " %><br>
@@ -53,6 +53,7 @@
 </div>
 <%end%>
 
+<div id="class-modal" class="modal fade"></div>
 
 
 

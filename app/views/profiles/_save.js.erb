@@ -1,0 +1,10 @@
+$("ul.errors").html("")
+<% if current_user.profile.errors.any? %>
+  <% current_user.profile.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $(".profile-show").html("<%= escape_javascript(render 'show') %>")
+  $("#profile-modal").modal("hide")
+  //flash[:success] = "assessment created!"
+<% end %>

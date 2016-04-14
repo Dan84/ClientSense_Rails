@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   
+  get 'profiles/show'
+
   get 'progress/index'
 
   get 'progress/show'
@@ -32,7 +34,9 @@ Rails.application.routes.draw do
 
   #get 'sessions/new'
 
-  resources :users
+  resources :users 
+  resources :profiles
+      
   resources :trainers, controller: 'users', type: 'Trainer'
   resources :clients, controller: 'users', type: 'Client'
 
@@ -50,6 +54,11 @@ Rails.application.routes.draw do
       post :mark_as_read
     end
   end
+
+  resources :conversations do
+      resources :messages
+    end
+    
   root 'static_pages#home'
 
 
@@ -61,7 +70,7 @@ Rails.application.routes.draw do
   post 'login'  =>  'sessions#create'
   delete 'logout' =>  'sessions#destroy'
   get 'newclass'  =>  'exercise_classes#new'
-  get 'allclasses'  =>  'exercise_classes#index'
+  #get 'allclasses'  =>  'exercise_classes#index'
   get 'newarticle'  =>  'articles#new'
   get 'newappointment' => 'appointments#new'
   get 'articles'  =>  'articles#index'

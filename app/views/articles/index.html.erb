@@ -1,50 +1,39 @@
-<h1>Articles</h1>
+<h1 align="left">Articles</h1>
 
 <% if current_user.trainer? %>
 <div class="row">
   <div class="col-md-3">
-      <%= button_to "New Article", newarticle_path, :method => "get", class: "btn btn-sm btn-success" %>
+      <%= link_to "New Article", newarticle_path, :method => "get", class: "btn btn-sm btn-success" %>
   </div>
 </div>
 <% end %>
 <br>
       <div class="row">
+        <div class="col-md-12">
         <% @articles.each do |article| %>
-                
-                      <div class="col-md-10">
-                          <div class="panel panel-info">
-                                <div class="panel-heading">
-                                      <h2 class="panel-title"><%= link_to article.title, article%></h2>
-                                </div> 
-                          
-                                  <div class="panel-body">
-                                        <%= sanitize(truncate(article.content, length: 150,  escape: false))%>
-                                  </div>
-                             
-
-                                <div class="panel-footer"><%= article.user.name%>
-                                </div>
-                            </div>
-                      </div>
-
-
-                          <div class="col-md-2">
-                                  
-                            <% if current_user.trainer? %>
-                            <%= button_to "Edit", edit_article_path(article), method: :get, class: "btn btn-sm btn-primary " %><br>
-                            <%= button_to "Delete", article_path(article.id), method: :delete, data: { confirm: "You sure?" } ,class: "btn btn-sm btn-primary " %>
-                            <% end %>
-                          </div>
-
-                    
-                
-                    
-          <% end %>
-
-          
-        
-  
-</div>
+         <div class="panel panel-default box-shadow--6dp">
+         <div class="panel-body ">     
+          <div class="col-md-11">
+            <h3><%= link_to article.title, article%></h3>
+            <i><%= article.user.name%></i><br>
+            <i><%= article.user.created_at.strftime("%B %d, %Y")%></i><br><br>
+            <p><%= sanitize(truncate(article.content, length: 300,  escape: false))%></p>
+            
+            
+          </div>
+          <div class="col-md-1">
+            <% if current_user.trainer? %>
+              <div class="btn-group">
+                <%= button_to " Edit", edit_article_path(article), method: :get, class: "btn-primary" %>
+                <%= button_to "Delete", article_path(article.id), method: :delete, data: { confirm: "You sure?" }, class: "btn-primary" %>
+              </div>
+            <% end %> 
+          </div>
+        </div>
+        </div>
+        <% end %>
+      </div>
+      </div>
 
 
 

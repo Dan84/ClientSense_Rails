@@ -9,7 +9,13 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @bookings = @user.attendances
         @createdclasses = @user.exercise_classes
-        respond_with(@user)
+        @profile = @user.profile
+
+        respond_to do |format|
+        format.html {@user}
+        format.js {@user}
+        format.json {render json: @user.to_json}
+      end
        # @articles = @user.articles.paginate(page: params[:page])
       end
 
@@ -18,9 +24,15 @@ class UsersController < ApplicationController
             if !logged_in?
                 redirect_to login_url
               else
-                @users = User.paginate(page: params[:page])
-                @trainers = User.trainers
-                @clients = User.clients
+                @users = User.all.where.not(id: current_user.id).paginate(page: params[:page])
+                @conversations = Conversation.involving(current_user).order("created_at DESC")
+                @trainers = User.trainers.where.not(id: current_user.id).paginate(page: params[:page])
+                @clients = User.clients.where.not(id: current_user.id).paginate(page: params[:page])
+
+                respond_to do |format|
+                  format.html {@users}
+                  format.json {render json: @users}
+                end
                 
                   #@users = User.where("trainer" => true) 
                   

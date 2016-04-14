@@ -1,4 +1,6 @@
 class AppointmentsController < ApplicationController
+	before_filter :logged_in_user
+  	before_action :is_user_trainer, only: [:edit, :uptate,:destroy,:show]
 	respond_to :html, :json
 
 
@@ -21,14 +23,13 @@ class AppointmentsController < ApplicationController
 		if(current_user.type == 'Trainer')
 		secure_params = params.require(:appointment).permit(:appointment_at,:end_time, :confirmed, :trainer_id,:client_id)
 		
-		@appointment = Appointment.create!(secure_params)        
+		@appointment = Appointment.create(secure_params)        
         else(current_user.type == 'Client')	
         	secure_params = params.require(:appointment).permit(:appointment_at,:duration)
-		@appointment = current_user.appointments.create!(secure_params)
+		@appointment = current_user.appointments.create(secure_params)
 		Trainer.all.each do |trainer|
-		Notification.create(recipient: trainer, actor: current_user, action: "requested an appointment.", url: allappointments_path)
-		
-		end
+        Notification.create(recipient: trainer, actor: current_user, action: "requested an appointment.", url: allappointments_path)
+        end			
 		end 
 
 		respond_to do |format|
@@ -36,8 +37,12 @@ class AppointmentsController < ApplicationController
       			format.html {redirect_to allappointments_path}
         		format.json { head :no_content }
         		format.js
-      		else
+
+      		else     			
+      			
         		format.json { render json: @appointment.errors.full_messages, status: :unprocessable_entity }
+        		format.js{@appointment.errors.full_messages}
+        		
       		end
     		end
 	end
@@ -57,7 +62,9 @@ class AppointmentsController < ApplicationController
 		    secure_params = params.require(:appointment).permit(:appointment_at,:end_time, :confirmed, :trainer_id,:client_id)
 		    if @appointment.update_attributes(secure_params)
 		      flash[:success] = "Appointment updated"
-		      redirect_to @appointment
+		      redirect_to allappointments_path
+
+        	  Notification.create(recipient: @appointment.client, actor: current_user, action: "confirmed your appointment.", url: allappointments_path)
 		    else
 		      render 'edit'
 		    end

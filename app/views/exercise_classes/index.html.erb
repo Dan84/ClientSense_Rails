@@ -4,21 +4,19 @@
 				<div class="row">
 					<div class="col-md-3 col-xs-push-2">
 						 <% if current_user.trainer? %>
-						 <%= button_to "New Class", new_exercise_class_path, method: :get, class: "btn btn-sm btn-success" %>
+						 <%= button_to "New Class", new_exercise_class_path, remote: true, method: :get, class: "btn btn-sm btn-success" %>
 						 <%end%>
 					</div>
 				</div>
-						<div class="row">
+						<div class="row" id="list">
 					 		<div class="col-xs-8 col-xs-push-2">
+					 			<div id="class-index">
 					 					<h3>Upcoming</h3>
-										<%= render 'shared/class_list', object: @classes_upcoming%>
-										<%= will_paginate @classes_upcoming, :param_name => "upcoming" %>
+										<%= render 'index'%>
+										<%= will_paginate @classes_upcoming, :param_name => "upcoming" %>						
 
-										<h3>Past</h3>
-										<%= render 'shared/class_list', object: @classes_past %>
-										<%= will_paginate @classes_past, :param_name => "past" %>
-
-										 
+								</div>		 
 					 		</div>
 					 	</div>
   
+<div id="class-modal" class="modal fade"></div>

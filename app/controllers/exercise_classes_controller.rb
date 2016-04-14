@@ -13,14 +13,22 @@ class ExerciseClassesController < ApplicationController
 
     @classes_upcoming = ExerciseClass.upcoming.paginate(page: params[:upcoming])
     @classes_past = ExerciseClass.past.paginate(page: params[:past])
+
+    respond_to do |format|
+
+          format.html {@classes_upcoming}
+          format.js {@classes_upcoming}
+    end
+
   end
 
   def create
   	#secure_post = params.require(:exercise_class).permit(:title,:description,:class_style_id,:class_level_id,:date)
         @exerciseclass = current_user.exercise_classes.build(secure_exclass) 
+        @classes_upcoming = ExerciseClass.upcoming.paginate(page: params[:upcoming])
         if @exerciseclass.save
           flash[:success] = "Class created!"
-          redirect_to @exerciseclass
+          redirect_to exercise_classes_path
         else
           
           render 'new'
@@ -38,7 +46,7 @@ class ExerciseClassesController < ApplicationController
       @exerciseclass = ExerciseClass.find(params[:id])
       if @exerciseclass.update_attributes(secure_exclass)
          flash[:success] = "Class Updated"
-         redirect_to allclasses_path
+         redirect_to exercise_classes_path
       else
         render action: "edit"
       end
@@ -53,7 +61,7 @@ class ExerciseClassesController < ApplicationController
 
     ExerciseClass.find(params[:id]).destroy
         flash[:success] = "Class deleted"
-        redirect_to allclasses_path
+        redirect_to exercise_classes_path
                   
  end
 

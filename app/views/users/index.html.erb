@@ -1,36 +1,67 @@
-<% provide(:title, 'All users') %>
+
 <h1>All users</h1>
+<div class = "row">
+<div class="col-xs-4">
+  <div class="panel panel-default box-shadow--6dp">
+      <div class="panel panel-body">
+                  
+                          
+        <ul class="users">
+          <h3>Clients</h3>
+          <%= render @clients %>
+        </ul>
+        <%= will_paginate %>
+      </div>
+    </div>
 
-<%= will_paginate %>
-<ul class="users">
-  <%= render @users %>
-</ul>
-<%= will_paginate %>
+</div>
+<div class="col-xs-4">
+  <div class="panel panel-default box-shadow--6dp">
+      <div class="panel panel-body">
+                  
+                          
+        <ul class="users">
+          <h3>Trainers</h3>
+          <%= render @trainers %>
+        </ul>
+        <%= will_paginate %>
+      </div>
+    </div>
 
-<!-- <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Race</th>
-      <th>Age</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.type %></td>
-        <td><%= link_to 'Show', user_path(user.id) %></td>
-        <td><%= link_to 'Edit', user_path(user.id, user, :edit) %></td>
-        <td><%= link_to 'Destroy', user_path(user.id, user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to "See all #{user.type.pluralize}", user_path(user.type) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
- -->
+</div>
+
+<div class="col-xs-4">
+  <div class="panel panel-default box-shadow--6dp">
+      <div class="panel panel-body">
+    <h3>Your Conversations</h3>
+
+    <div style="height: 400px; overflow-y: auto;">
+      <% if @conversations.any? %>
+          <ul class="media-list">
+            <% @conversations.each do |conversation| %>
+                <li class="media">
+                  <%= image_tag("http://placehold.it/50x50", class: "media-object pull-left") %>
+                  <div class="media-body">
+                    <%= link_to "Open", conversation_path(conversation), class: "conversation", "data-cid" => conversation.id %>
+                        <h4 class="media-heading"><%= conversation_interlocutor(conversation).name %></h4>
+                        <p><%= conversation.messages.last.nil? ? "No messages" : truncate(conversation.messages.last.body, length: 45) %></p>
+                  </div>
+                </li>
+
+            <% end %>
+          </ul>
+      <% else %>
+          <p>You have no conversations. Click send message with any user to create one.</p>
+      <% end %>
+    </div>
+</div>
+</div>
+</div>
+  </div>
+
+  <div class="col-md-4">
+
+  </div>
+
+
 

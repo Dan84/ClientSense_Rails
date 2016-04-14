@@ -2,9 +2,9 @@ class Appointment < ActiveRecord::Base
 	belongs_to :trainer
 	belongs_to :client
 
-	validates :appointment_at, presence: true  
+	validates :appointment_at, presence: true, uniqueness: true  
 	validates :client_id, presence: true
-	validates_date :appointment_at, :on_or_after => :today
+	validates_datetime :appointment_at, :on_or_after => Time.now
 
 
 	scope :unconfirmed, -> { where(confirmed: false) }

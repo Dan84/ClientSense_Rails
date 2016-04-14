@@ -16,6 +16,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap/modal
+//= require private_pub
+//= require chat
 //= require turbolinks
 //= require ckeditor/init
 //= require moment
@@ -23,6 +25,7 @@
 //= require raphael
 //= require morris
 //= require fullcalendar
+//= require data-confirm-modal
 //= require_tree .
 
 

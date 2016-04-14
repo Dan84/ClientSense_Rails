@@ -1,0 +1,20 @@
+<% provide(:title, @profile) %>
+
+
+        <div class="panel default box-shadow--6dp">
+            
+                <div class="panel-body">
+                  
+                    <p><b>Gender: </b><%=@profile.gender%></p>
+                    <p><b>DOB: </b><%=@profile.dob%></p>
+                    <p><b>Phone: </b><%=@profile.phone%></p>
+                    <p><b>Occupation: </b><%=@profile.occupation%></p>
+                    <p><b>Goal: </b><%=@profile.goal%></p>
+                    <p><b>Target Weight: </b><%=@profile.targetweight%></p>
+                    <p><b>Bio: </b><%=@profile.bio%></p>
+
+                    <%= link_to "Update Profile", edit_profile_path(current_user.id), remote: true, class: "btn btn-sm btn-primary" %> 
+                </div>
+                
+        </div>
+     

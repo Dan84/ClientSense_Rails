@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
 	has_many :attendances, :through => :class_bookings, :source => :exercise_class 
 	has_many :articles, dependent: :destroy
 	has_many :comments, dependent: :destroy
-
+	has_many :conversations, :foreign_key => :sender_id
+	has_one :profile
 	scope :trainers, -> { where(type: 'Trainer') }
 	scope :clients, -> { where(type: 'Client') }
 
@@ -23,7 +24,10 @@ class User < ActiveRecord::Base
 	has_secure_password
 
 	before_save {|user| user.email = email.downcase}
+	self.per_page = 5
 
+	after_create :create_profile
+	
 	def to_partial_path
   		'users/user'
 	end 
