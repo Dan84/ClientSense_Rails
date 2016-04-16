@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   respond_to :html, :json
 
 	def show
+    #On the users profile page retrieve their group class attendances, if trainer their created classes, and users profile
         logged_in_user
         @user = User.find(params[:id])
         @bookings = @user.attendances
@@ -20,23 +21,22 @@ class UsersController < ApplicationController
       end
 
   def index  
+      #If the user is logged in on index retrieve users converations, and trainers and clients to display 
+      if !logged_in?
+        redirect_to login_url
+        else
+          @users = User.all.where.not(id: current_user.id).paginate(page: params[:page])
+          @conversations = Conversation.involving(current_user).order("created_at DESC")
+          @trainers = User.trainers.where.not(id: current_user.id).paginate(page: params[:page])
+          @clients = User.clients.where.not(id: current_user.id).paginate(page: params[:page])
 
-            if !logged_in?
-                redirect_to login_url
-              else
-                @users = User.all.where.not(id: current_user.id).paginate(page: params[:page])
-                @conversations = Conversation.involving(current_user).order("created_at DESC")
-                @trainers = User.trainers.where.not(id: current_user.id).paginate(page: params[:page])
-                @clients = User.clients.where.not(id: current_user.id).paginate(page: params[:page])
-
-                respond_to do |format|
-                  format.html {@users}
-                  format.json {render json: @users}
-                end
-                
-                  #@users = User.where("trainer" => true) 
+          respond_to do |format|
+            format.html {@users}
+            format.json {render json: @users}
+          end               
                   
-                end     
+                  
+        end     
 end
 
       
@@ -50,10 +50,6 @@ end
 
 
   def create
-
-  	#secure_params = params.require(:user).permit(:name, :email, :password, :password_confirmation)
-
-
   	@user = User.new(user_params)
   	if @user.save
       remember @user
@@ -88,7 +84,7 @@ end
   end
 
 
-
+  #Unused method 
   def change_type
     @user = User.find(params[:id])
     @user
@@ -106,7 +102,7 @@ end
 
 
   private
-
+    #User parameters
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation,:type)
@@ -120,7 +116,7 @@ end
       end
     end
 
-
+    #Check if user is correct so only edit own info
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless @user == current_user

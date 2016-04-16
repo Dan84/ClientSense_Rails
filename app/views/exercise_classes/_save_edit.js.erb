@@ -1,0 +1,10 @@
+$("ul.errors").html("")
+<% if @exerciseclass.errors.any? %>
+  <% @exerciseclass.errors.full_messages.each do |message| %>
+  
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $("#class-show").html("<%= escape_javascript(render 'show') %>")
+  $("#class-modal").modal("hide")
+<% end %>

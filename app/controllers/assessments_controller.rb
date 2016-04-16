@@ -1,4 +1,5 @@
 class AssessmentsController < ApplicationController
+  #Check if user is logged in and restrict some actions for client
   before_filter :logged_in_user
   before_action :is_user_trainer, only: [:create, :edit, :uptate,:destroy,:index,:show]
 
@@ -7,6 +8,7 @@ class AssessmentsController < ApplicationController
   end
 
   def create
+    #Add client name from id to be stored for searching assessments
   	@client_name = Client.find(params[:assessment][:client_id]).name
   	params[:assessment][:client_name] = @client_name
   	secure_params = params.require(:assessment).permit(:client_id,:date,:client_name,:weight, :bpsystolic, :bpdiastolic,:bodyfat,:notes, :trainer_id)

@@ -1,8 +1,8 @@
 var ready = function () {
 
     /**
-     * When the send message link on our home page is clicked
-     * send an ajax request to our rails app with the sender_id and
+     * When the send message button on users page is clicked
+     * send an ajax request to rails app with the sender_id and
      * recipient_id
      */
 

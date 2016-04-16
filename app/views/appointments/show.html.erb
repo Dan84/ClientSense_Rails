@@ -1,11 +1,11 @@
 <% provide(:title, @appointment.client_id) %>
- <h1><%=@appointment.client.name%></h1>
+ <h1 class="pageheader"><%=" #{@appointment.client.name}"%></h1>
 <div class="row">
-    <div class="col-xs-9 ">
+    <div class="col-xs-8 col-xs-push-2">
 
-        <div class="panel panel-info">
+        <div class="panel panel-info box-shadow--6dp">
             <div class="panel-heading">
-              <h3 class="panel-title"><%= @appointment.client.name%></h3>
+              <h3 class="panel-title"><%= @appointment.client.name%></h3> 
             </div>
                 <div class="panel-body">
                     <p> <%= @appointment.appointment_at.strftime("%B %d, %Y, %H:%M")+' - '%>

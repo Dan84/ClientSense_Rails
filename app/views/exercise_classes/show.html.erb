@@ -1,57 +1,10 @@
  <% provide(:title, @exerciseclass.title) %>
  <h1><%=@exerciseclass.title%></h1>
-<div class="row">
-    <div class="col-md-9 ">
+ <div id="class-show">
+      <%= render 'show' %>
 
-        <div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title"><%= @exerciseclass.title%></h3>
-            </div>
-                <div class="panel-body">
-                    <p> <%= @exerciseclass.description %></p>
-                     <p><%= @exerciseclass.class_style.style %></p>
-                     <p><%= @exerciseclass.class_level.level %></p>
-                     <p><%= @exerciseclass.date.strftime("%B %d, %Y") %></p>
-                     <p><%= @exerciseclass.user.name %><br>
-                </div>
-        </div>
-  </div>     
-
-    <div class="col-md-3 ">
-        <% if current_user.trainer? %>
-          <div>
-                    <%= button_to "Edit", edit_exercise_class_path(@exerciseclass), remote: true, method: :get, class: "btn btn-sm btn-primary " %><br>
-          </div>
-          <div>
-                    <%= button_to "Delete", @exerciseclass, method: :delete, data: { confirm: "You sure?" } ,class: "btn btn-sm btn-primary " %><br>
-          </div>
-        <%end%>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-              <h1 class="panel-title"><h4> Attending</h1>
-            </div>
-            <ul>
-                <% @exerciseclass.participants.each do |attendee| %>
-                <div class="panel-body">
-                  <li><%= link_to attendee.name, attendee %></li>
-                </div>
-                <% end %>
-            </ul>
-        </div>
-    </div>
-
-
- </div>
-<% unless current_user.trainer? %> 
- <div class="row">
-      <div class="col-md-3 col-xs-push-6">
-        <% unless @exerciseclass.date.past? %>   
-            <%= render 'attend_form' %>
-        <%end%>
-        </div>
-
+    
 </div>
-<%end%>
 
 <div id="class-modal" class="modal fade"></div>
 

@@ -2,39 +2,49 @@
 
 <div class="row">  
   <div class="col-xs-6">
+    <div class="panel panel-default box-shadow--6dp">
+         <div class="panel panel-body">
     <h3>Weight Loss</h3>   
     <%= line_chart @assessments.group_by_week(:date, "sum", "weight" ) %>
   </div>
+  </div>
+  </div> 
+  <div class="col-xs-6">
+    <div class="panel panel-default box-shadow--6dp">
+         <div class="panel panel-body">
+   <h3>Bodyfat</h3>              
+    <%= line_chart @assessments.group_by_day(:date, "sum", "bodyfat","Kg" ) %>
+  </div>
+  </div>
+  </div> 
 
-<div class="col-xs-6 ">
-   	<h3>Previous</h3>
-   	<table class="table table-bordered">
-   	  <thead>
-   	    <tr class="warning">
-   	       <th>Date</th>
-   	       <th>Weight</th>
-   	       <th>Blood Pressure</th>
-   	       <th>Bodyfat</th>
-   	     </tr>
-   	  </thead>
-   	  <tbody>
-   	   	<% @assessments.each do |assessment| %>
-   	    <tr class="default">
-   	     <td><%= assessment.date.strftime("%B %d, %Y")%></td>
-   	      <td><%= "#{assessment.weight} Kg"%></td>
-   	      <td><%= assessment.bpsystolic.to_s+ '/' +assessment.bpdiastolic.to_s%></td>
-   	      <td> <%= "#{assessment.bodyfat} %" %></td>                    
-   	       
-   	    </tr>
-   	     <% end %>
-   	  </tbody>
-   	 </table>   					
-  	</div>	
+
 </div>
 
 <div class="row">
-	<div class="col-xs-6">
-	 <h3>Bodyfat</h3>							 
-		<%= line_chart @assessments.group_by_day(:date, "sum", "bodyfat","Kg" ) %>
-	</div>					
+  <div class="col-xs-12 ">
+    <h3>Previous Assessments</h3>
+    <table class="table table-bordered box-shadow--6dp">
+      <thead>
+        <tr class="warning">
+           <th>Date</th>
+           <th>Weight</th>
+           <th>Blood Pressure</th>
+           <th>Bodyfat</th>
+         </tr>
+      </thead>
+      <tbody>
+        <% @assessments.each do |assessment| %>
+        <tr class="default">
+         <td><%= assessment.date.strftime("%B %d, %Y")%></td>
+          <td><%= "#{assessment.weight} Kg"%></td>
+          <td><%= assessment.bpsystolic.to_s+ '/' +assessment.bpdiastolic.to_s%></td>
+          <td> <%= "#{assessment.bodyfat} %" %></td>                    
+           
+        </tr>
+         <% end %>
+      </tbody>
+     </table>             
+    </div>  
+					
 </div>

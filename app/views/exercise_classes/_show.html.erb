@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-9 ">
+
+        <div class="panel panel-info box-shadow--6dp">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= @exerciseclass.title%></h3>
+            </div>
+                <div class="panel-body">
+                    <p><%=  image_tag @exerciseclass.image.url(:large), :class=> "eximg" %></p>
+                    <p> <%= @exerciseclass.description %></p>
+                     <p><%= @exerciseclass.class_style.style %></p>
+                     <p><%= @exerciseclass.class_level.level %></p>
+                     <p><%= @exerciseclass.date.strftime("%B %d, %Y, %H:%M") %></p>
+                     <p><%= @exerciseclass.user.name %><br>
+                </div>
+        </div>
+  </div>
+  <div class="col-md-3 ">
+        <% if current_user.trainer? %>
+          <div>
+                    <%= button_to "Edit", edit_exercise_class_path(@exerciseclass), remote: true, method: :get, class: "btn btn-sm btn-primary " %><br>
+          </div>
+          <div>
+                    <%= button_to "Delete", @exerciseclass, method: :delete, data: { confirm: "You sure?" } ,class: "btn btn-sm btn-primary " %><br>
+          </div>
+        <%end%>
+        <div class="panel panel-default box-shadow--6dp">
+            <div class="panel-heading">
+              <h1 class="panel-title"><h4> Attending</h1>
+            </div>
+            <ul>
+                <% @exerciseclass.participants.each do |attendee| %>
+                <div class="panel-body">
+                  <li><%= link_to attendee.name, attendee %></li>
+                </div>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+
+
+ </div>
+<% unless current_user.trainer? %> 
+ <div class="row">
+      <div class="col-md-3 col-xs-push-6">
+        <% unless @exerciseclass.date.past? %>   
+            <%= render 'attend_form' %>
+        <%end%>
+        </div>
+
+</div>
+<%end%>     

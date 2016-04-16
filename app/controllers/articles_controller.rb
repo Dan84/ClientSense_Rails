@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+	#Check if user is logged in and restrict some actions for client
 	before_filter :logged_in_user
 	before_action :is_user_trainer, only: [:create, :edit, :uptate,:destroy]
 	respond_to :html, :json
@@ -6,7 +7,7 @@ class ArticlesController < ApplicationController
 	def show
 		@article = Article.find(params[:id])
 		@comment  = current_user.comments.build
-
+		#Retrieve article comments
 		@discussion_comments = @article.discussion
 		respond_to do |format|
         format.html {}
@@ -25,10 +26,8 @@ class ArticlesController < ApplicationController
         end
 	end
 
-	def create
-		
-		
-
+	def create		
+		#Create article related to author
 		 @article = current_user.articles.build(secure_article) 
 			 if @article.save
 			    flash[:success] = "Posted Article"
@@ -74,10 +73,11 @@ class ArticlesController < ApplicationController
 
 
     private
+    #article params
     def secure_article
     	params.require(:article).permit(:title,:content,:commentable)
     end
-    
+    #check if the user is trainer
     def is_user_trainer
          unless current_user.trainer?
          	redirect_to(root_url)

@@ -1,6 +1,6 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <%= form_for @profile do |f| %>
+    <%= form_for @profile, html: { multipart: true } do |f| %>
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Profile</h4>
@@ -11,12 +11,12 @@
                 <%= f.select :gender, [["Male"], ["Female"]], {}, class: 'form-control'  %>
 					      <%= f.label :dob, 'Date of Birth' %>					         
   							<div class="input-group date" class="datetimepicker">
-  					        <%= f.date_field :dob, class: 'form-control datepicker'%>
+  					     <%= f.text_field :dob, class: 'form-control datetimepicker'%>
   					        	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
   					      	</div>
 					          <script type="text/javascript">
 					            $(function(){
-					              $('.datepicker').datepicker({
+					              $('.datetimepicker').datetimepicker({
 					             	format: 'DD-MM-YYYY' 
 					              });
 					             });
@@ -30,7 +30,9 @@
 							<%= f.label :targetweight %>
 							<%= f.text_field :targetweight, class: 'form-control' %>
 							<%= f.label :bio %>
-							<%= f.text_area :bio, class: 'form-control' %>							
+							<%= f.text_area :bio, class: 'form-control' %>
+              <%= f.label :avatar %>
+              <%= f.file_field :avatar %>							
 					
                      
       </div>

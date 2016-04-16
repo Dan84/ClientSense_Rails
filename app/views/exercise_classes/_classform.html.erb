@@ -1,6 +1,6 @@
  <div class="modal-dialog">
   <div class="modal-content">
-    <%= form_for @exerciseclass do |f| %>
+    <%= form_for @exerciseclass, remote: true, html: {  style: "display:inline;", multipart: true, } do |f| %>
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">New Class</h4>
@@ -23,7 +23,23 @@
           <%= f.collection_radio_buttons(:class_level_id, ClassLevel.all, :id, :level, {}, {class: 'radio' }    ) %><br>
 
           <%= f.label :date %>
-          <%= f.date_field :date, {class: 'form-control' } %>
+          <div class="input-group date" class="datetimepicker">
+                    <%= f.datetime_field :date, class: 'form-control datetimepicker'%>
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <script type="text/javascript"> /*Datetime picker with disabled hours and days*/
+                      $(function(){
+                        $('.datetimepicker').datetimepicker({
+                        daysOfWeekDisabled: [0],
+                        disabledHours: [0, 1, 2, 3, 4, 5, 6, 22, 23, 24],
+                        format: 'DD-MM-YYYY HH:mm',
+                        useCurrent: false,
+                        });
+                       });
+                    </script>   
+
+          <%= f.label :image %>
+          <%= f.file_field :image %>
             
           <!-- <div class="row">
                <div class="col-md-6 col-md-offset-3">

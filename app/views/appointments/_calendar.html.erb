@@ -1,4 +1,4 @@
-<script >
+<script >   /*fullCalendar implementation*/
 $(document).ready(function() {
 
     // page is now ready, initialize the calendar...
@@ -11,8 +11,9 @@ $(document).ready(function() {
     	cursor: 'pointer',
     	eventClick: function(calEvent, jsEvent, view) {
 
-        //alert('Event: ' + calEvent.title);
-        //alert('Coordinates: ' + calEvent.id );
+        /*var modal = $("#appointment-modal");
+       modal.find(".modal-title").html(calEvent.title);
+       modal.modal();*/
         window.location = '/appointments/'+calEvent.id      
 
     },
@@ -26,10 +27,10 @@ $(document).ready(function() {
     }, 
         views: {
                 basic: {
-                    // options apply to basicWeek and basicDay views
+                    
                 },
                 agenda: {
-                    // options apply to agendaWeek and agendaDay views
+                   
                 },
                 week: {
                 	minTime: "7:00",
@@ -37,7 +38,7 @@ $(document).ready(function() {
                     
                 },
                 day: {
-                    // options apply to basicDay and agendaDay views
+                    
                 }
             }
     })

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	attr_accessor :remember_token
-
+	# STI 
 	self.inheritance_column = :type
 
 
@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 	has_many :comments, dependent: :destroy
 	has_many :conversations, :foreign_key => :sender_id
 	has_one :profile
+	# STI scope
 	scope :trainers, -> { where(type: 'Trainer') }
 	scope :clients, -> { where(type: 'Client') }
 
@@ -25,7 +26,7 @@ class User < ActiveRecord::Base
 
 	before_save {|user| user.email = email.downcase}
 	self.per_page = 5
-
+	# Create profile when user is created
 	after_create :create_profile
 	
 	def to_partial_path
@@ -59,21 +60,25 @@ class User < ActiveRecord::Base
 	def forget
 		update_attribute(:remember_digest, nil)
 	end
-
+	# Cehck if a user is attending a group exercise class
 	def attending?(exerciseclass)
     	exerciseclass.participants.include?(self)
   	end
 
+  	# Creates a class booking for the current user
 	def attend!(exerciseclass)
     	self.class_bookings.create!(exercise_class_id: exerciseclass.id)
   	end
 
-
+  	# Cancels a class booking for the current user
   	def cancel!(exerciseclass)
     	self.class_bookings.find_by(exercise_class_id: exerciseclass.id).destroy
   	end
 
-  	
+  	# Splits the users name to retrieve first name
+  	def first_name
+    self.name.blank? ? "" : self.name.split(" ")[0]
+  end
 
   	
 

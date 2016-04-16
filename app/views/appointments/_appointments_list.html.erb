@@ -1,5 +1,5 @@
 <% object.each do |apptm| %>
-	<div class="panel panel-info">
+	<div class="panel panel-info box-shadow--6dp">
 		<div class="panel-heading">
 			<h3 class="panel-title"><% if apptm.client %><%= link_to apptm.client.name, apptm%><%end%>
 			<span><%= link_to "", apptm,method: :delete, data: { confirm: "You sure?" }, class: "glyphicon glyphicon-remove" %></span></h3>

@@ -17,10 +17,10 @@
                     <%= f.datetime_field :appointment_at, class: 'form-control datetimepicker'%>
                       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
-                    <script type="text/javascript">
+                    <script type="text/javascript"> /*Datetime picker with disabled hours and days*/
                       $(function(){
                         $('.datetimepicker').datetimepicker({
-                          daysOfWeekDisabled: [0, 5],
+                          daysOfWeekDisabled: [0],
                         disabledHours: [0, 1, 2, 3, 4, 5, 6, 22, 23, 24],
                         format: 'DD-MM-YYYY HH:mm' ,
                         });

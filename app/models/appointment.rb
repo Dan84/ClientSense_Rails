@@ -6,7 +6,7 @@ class Appointment < ActiveRecord::Base
 	validates :client_id, presence: true
 	validates_datetime :appointment_at, :on_or_after => Time.now
 
-
+  # Define scopes for confirmation status and upcoming or past
 	scope :unconfirmed, -> { where(confirmed: false) }
   scope :confirmed, -> { where(confirmed: true) }
 
@@ -14,10 +14,10 @@ class Appointment < ActiveRecord::Base
   scope :past, -> { where("appointment_at < ?", Time.now).order('appointment_at DESC') }
 
   	 def start_time
-        self.appointment_at ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
+        self.appointment_at ##Where 'appointment_at' is a attribute of type 'Date' 
     end
 
-
+    # Get Json values from 'Appointment' model to be used for calendar
     def as_json(options = {})
     {
       :id => self.id,

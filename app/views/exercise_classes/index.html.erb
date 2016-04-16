@@ -1,17 +1,17 @@
 
 
-<h1>All Classes</h1>
+<h1>Group Classes</h1>
 				<div class="row">
-					<div class="col-md-3 col-xs-push-2">
+					<div class="col-md-3 col-xs-push-1">
 						 <% if current_user.trainer? %>
-						 <%= button_to "New Class", new_exercise_class_path, remote: true, method: :get, class: "btn btn-sm btn-success" %>
+						 <%= link_to "New Class", new_exercise_class_path, remote: true, method: :get, class: "btn btn-sm btn-success" %>
 						 <%end%>
 					</div>
 				</div>
 						<div class="row" id="list">
-					 		<div class="col-xs-8 col-xs-push-2">
+					 		<div class="col-xs-10 col-xs-push-1">
 					 			<div id="class-index">
-					 					<h3>Upcoming</h3>
+					 					<h3></h3>
 										<%= render 'index'%>
 										<%= will_paginate @classes_upcoming, :param_name => "upcoming" %>						
 

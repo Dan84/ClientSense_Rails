@@ -1,10 +1,12 @@
 /**
  * Chat logic
+ * JavaScript functionality used from:
+ * https://gist.github.com/Joseph-N/d1413cc5822efa416175#file-chat-js
  *
  * Most of the js functionality is inspired from anatgarg.com
  * jQuery tag Module from the tutorial
  * http://anantgarg.com/2009/05/13/gmail-facebook-style-jquery-chat/
- *
+ *  
  */
 
 
@@ -29,7 +31,7 @@ var ready = function () {
         },
 
         /**
-         * closes the chatbox by essentially hiding it from the page
+         * closes the chatbox by hiding it from the page
          * 
          * @param conversation_id
          */
@@ -162,7 +164,7 @@ var ready = function () {
 
         /**
          * Responsible for listening to the keypresses when chatting. If the Enter button is pressed,
-         * we submit our conversation form to our rails app
+         * we submit our conversation form to rails app
          *
          * @param event
          * @param chatboxtextarea

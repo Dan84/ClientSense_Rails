@@ -1,11 +1,21 @@
 <% @classes_upcoming.each do |exclass| %>
-	<div class="panel panel-info">
+	<div class="panel panel-info box-shadow--6dp" >
 		<div class="panel-heading">
 			<h3 class="panel-title"><%= link_to exclass.title, exclass%></h3>
 				</div>
-					<div class="panel-body">
-						<%= link_to exclass.class_style.style, exclass %><br>
-						<%=  exclass.date.strftime("%B %d, %Y") %>
+					<div class="panel-body">					
+						    <div class="row">
+						      <div class="col-xs-4">
+						        <%=  link_to (image_tag exclass.image.url(:thumb)), exclass %>
+
+						      </div>
+						      <div class="col-xs-8">
+						        <b><%= exclass.class_style.style%></b><br>
+						        <p><%=  exclass.class_level.level%></p>
+						        <%=  exclass.date.strftime("%B %d, %Y, %H:%M") %>
+						      </div>
+						    </div>
+						  
 					</div>
 								  
 	</div>

@@ -11,7 +11,7 @@ class ClassBookingsController < ApplicationController
   def create
 
   	@exerciseClass = ExerciseClass.find(params[:class_booking][:exercise_class_id])
-  	
+  	#call method in user class to attend exercise class
     current_user.attend!(@exerciseClass)
     redirect_to @exerciseClass
     
@@ -20,7 +20,7 @@ class ClassBookingsController < ApplicationController
 
   def destroy
     @exerciseClass = ClassBooking.find(params[:id]).exercise_class
-    
+    #call method in user class to cancel exercise class attendance
     current_user.cancel!(@exerciseClass)
     redirect_to @exerciseClass
   end

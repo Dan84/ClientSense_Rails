@@ -50,7 +50,7 @@ module SessionsHelper
           @current_user = nil
       end
 
-
+      # Determines if the current user is a trainer
       def is_user_trainer
        unless current_user.trainer?
         redirect_to(root_url)

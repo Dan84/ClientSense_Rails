@@ -14,7 +14,7 @@ class Article < ActiveRecord::Base
 
 
   
-
+  # Retrieve all comments related to an article
 	def discussion
         Comment.where("article_id = ?", id)
     end
