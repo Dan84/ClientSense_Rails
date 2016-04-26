@@ -1,8 +1,14 @@
 /**
  * Chat logic
  * JavaScript functionality used from:
+ * Chatty
+ * Joseph-N
  * https://gist.github.com/Joseph-N/d1413cc5822efa416175#file-chat-js
- *
+ *  //////////////////////////////////////////////////////////////////
+
+
+
+ 
  * Most of the js functionality is inspired from anatgarg.com
  * jQuery tag Module from the tutorial
  * http://anantgarg.com/2009/05/13/gmail-facebook-style-jquery-chat/
@@ -51,7 +57,7 @@ var ready = function () {
         },
 
         /**
-         * Handles 'smart layouts' of the chatboxes. Like when new chatboxes are
+         * Handles 'layouts' of the chatboxes. Like when new chatboxes are
          * added or removed from the view, it restructures them so that they appear
          * neatly aligned on the page
          */

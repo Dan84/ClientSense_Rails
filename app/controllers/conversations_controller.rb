@@ -1,4 +1,9 @@
 class ConversationsController < ApplicationController
+		#Some code used from
+		#Chatty
+     	#Joseph-N
+     	#https://github.com/Joseph-N/chatty
+	 
 	before_filter :logged_in_user
 	#Set layout to false in order to cancel default views
 	layout false
@@ -15,6 +20,7 @@ class ConversationsController < ApplicationController
 	  end
 
 	  def show
+	  	#conversation will also be used for path in pub-sub
 	    @conversation = Conversation.find(params[:id])
 	    @reciever = interlocutor(@conversation)
 	    @messages = @conversation.messages

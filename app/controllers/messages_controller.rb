@@ -1,4 +1,8 @@
 class MessagesController < ApplicationController
+  #Some code used from
+  #Chatty
+  #Joseph-N
+  #https://github.com/Joseph-N/chatty
   before_filter :logged_in_user
 
  def create
@@ -7,7 +11,7 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.build(message_params)
     @message.user_id = current_user.id
     @message.save!
-
+    #Passing the path to be used for pub-sub
     @path = conversation_path(@conversation)
   end
 

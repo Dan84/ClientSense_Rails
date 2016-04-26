@@ -1,7 +1,7 @@
 <script >   /*fullCalendar implementation*/
 $(document).ready(function() {
 
-    // page is now ready, initialize the calendar...
+    
 
     $('#calendar').fullCalendar({
     	header: { center: 'month,agendaWeek' },
@@ -10,45 +10,31 @@ $(document).ready(function() {
     	eventColor: '#378006',
     	cursor: 'pointer',
     	eventClick: function(calEvent, jsEvent, view) {
-
         /*var modal = $("#appointment-modal");
        modal.find(".modal-title").html(calEvent.title);
        modal.modal();*/
-        window.location = '/appointments/'+calEvent.id      
-
+        window.location = '/appointments/'+calEvent.id
     },
     eventRender: function(event, element) {
         
-           element.css('cursor', 'pointer');       
-    
-    }, 
-     
+           element.css('cursor', 'pointer');     
+    },      
     eventMouseout: function(calEvent, domEvent) {
     }, 
         views: {
-                basic: {
-                    
+                basic: {                    
                 },
-                agenda: {
-                   
+                agenda: {                   
                 },
                 week: {
                 	minTime: "7:00",
-                maxTime: "22:00",
-                    
+                maxTime: "22:00",                    
                 },
-                day: {
-                    
+                day: {                    
                 }
             }
     })
-
-});</script>
-
-
-
-
-				
+});</script>				
 			<!-- <div class="row">
 				<div class="col-md-8 col-xs-push-2">	 -->			
 					<div id='calendar'></div>

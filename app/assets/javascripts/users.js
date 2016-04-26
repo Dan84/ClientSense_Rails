@@ -1,6 +1,17 @@
 var ready = function () {
 
+
     /**
+     * 
+     * JavaScript functionality used from:
+     * Chatty
+     * Joseph-N
+     * https://gist.github.com/Joseph-N/d1413cc5822efa416175#file-chat-js
+     *  //////////////////////////////////////////////////////////////////
+
+
+
+
      * When the send message button on users page is clicked
      * send an ajax request to rails app with the sender_id and
      * recipient_id
